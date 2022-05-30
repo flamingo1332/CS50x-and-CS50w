@@ -1,0 +1,39 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h2>{{ username }}'s Watchlist </h2>
+
+{% for watchlist in watchlists %}
+<div class="listing grid_2_2">
+
+  <a href="{% url 'listing' watchlist.listing.title %}" class="link_listing">
+    <!-- httpresponse reverse 에서 보내는 args 랑 이름 같게해야 적용됨 (당연한건가?) -->
+    <img src="{{ watchlist.listing.image.url }}" class="image_listing_small">
+  </a>
+
+  <a href="{% url 'listing' watchlist.listing.title %}" class="link_listing">
+    <div>
+      <!-- Id: {{ watchlist.listing.id }}<br> -->
+      Listing: {{ watchlist.listing.title }}<br>
+      description: {{ watchlist.listing.description }}<br>
+      Starting_bid: {{ watchlist.listing.starting_bid }}
+      <br>
+      Current_bid:
+      {% for bid in bids %}
+      {% if bid.listing == watchlist.listing %}
+      {{ bid.bid }}
+      <br>
+
+      {% if bid.closed == True%}
+      Bid is closed!
+
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </div>
+  </a>
+
+</div>
+{% endfor %}
+
+{% endblock %}

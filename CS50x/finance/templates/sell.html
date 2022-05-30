@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select  class="form-select mx-auto w-auto margin" id="symbol" name="symbol" placeholder="symbol"]>
+
+                <option value=""> Symbol </option>
+                {% for symbols in symbols %}
+                {% if symbols["SUM(s_num)"] == 0 %}
+                {% else %}
+                <option value="{{ symbols["symbol"] }}">{{ symbols["symbol"] }}  </option>
+                {% endif %}
+                {% endfor %}
+
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="shares" type="number" min="1">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}

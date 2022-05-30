@@ -1,0 +1,43 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+{% if message %}
+<h2>{{ message }}</h2>
+{% else %}
+<h2>{{ category }}</h2>
+{% endif %}
+
+{% for listing in categorylistings %}
+<div class="listing grid_2_2">
+
+  <a href="{% url 'listing' listing.title %}" class="link_listing">
+    <img src="{{ listing.image.url }}" class="image_listing_small">
+  </a>
+
+  <a href="{% url 'listing' listing.title %}" class="link_listing">
+    <div>
+      Listing: {{ listing.title }}<br>
+      description: {{ listing.description }}<br>
+      Starting_bid: {{ listing.starting_bid }}
+      <br>
+      Current_bid:
+      {% for bid in bids %}
+      {% if bid.listing == listing %}
+      {{ bid.bid }}<br>
+
+      {% if bid.closed == True%}
+      Bid is closed!
+
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </div>
+  </a>
+
+</div>
+
+{% endfor %}
+<!-- Syntax문제 없는데 출력 안되는 문제 발생.  categorylistings를 catgorylistings로 입력한 문제였다 오타 하나..-->
+
+{% endblock %}

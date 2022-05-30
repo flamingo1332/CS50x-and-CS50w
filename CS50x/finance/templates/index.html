@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<table class = "table">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th class="align_left">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stocks in stocks %}
+        {% if stocks["SUM(s_num)"] == 0 %}
+        {% else %}
+        <tr>
+            <td>{{ stocks["symbol"] }}</td>
+            <td class="col-1">{{ stocks["s_name"] }}</td>
+            <td>{{ stocks["SUM(s_num)"] }}</td>
+            <td>{{ stocks["price"] | usd}} $</td>
+            <td class="align_left">{{ (stocks["SUM(s_num)"] * stocks["price"]) | usd}} $ </td>
+
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="table_none"></td>
+            <td class="table_none"></td>
+            <td class="table_none"></td>
+            <td>CASH</td>
+            <td class="align_left">{{ cashs[0]["cash"] | usd}} $</td> <!-- stocks에선 바로 key 입력하면 값이 나왔는데, cashs에서는 [0][key]입력해야 값이 나옴 이해아직안됌 -->
+
+        </tr>
+          <tr>
+            <td class="table_none"></td>
+            <td class="table_none"></td>
+            <td class="table_none"></td>
+            <td>TOTAL</td>
+                {% if total %}
+            <td class="align_left">{{ (total[0]["SUM(total)"] + cashs[0]["cash"]) | usd }} $</td>
+                {% else %}
+            <td class="align_left">{{ cashs[0]["cash"] | usd }} $</td>
+                {% endif %}
+            </td> <!--jinja syntax 어려워서 sqlite 이용해서 계산한다음 때려넣음-->
+          </tr>
+      </tfoot>
+
+</table>
+{% endblock %}

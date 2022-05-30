@@ -1,0 +1,34 @@
+This might not be a popular opinion but, there is another way to solve this: don't understand Tideman. Just write the 6 functions we are told to write.
+
+In the problem specification page, the entire section from "Background" to "Understanding" tells how/why the Tideman algorithm works. You can skip all of this! Because they (CS50) have written that part of the code for you. It's in main(), and it works for sure, as long as the code you are about to write works.
+
+Even in the Understanding section, the first half talks about the variables and types you will be using (you need to understand this) but then from "Now onto main" onward, it talks about how main() works....and we already decided to ignore that since it does work.
+
+Now we "just" have to write 6 functions that blindly do what they are told. Most of this depends on understanding the usage of the variables and types in the Background section, and decoding a little of the function description. As an example of "decoding", it took me a while to translate
+
+strength of victory is defined to be the number of voters who prefer the preferred candidate.
+
+into
+
+strength of victory is defined to be the number of voters who prefer (the winner of the pair) over (the loser of the pair)
+
+When you put it that way, this code pops out:
+
+        int strength = preferences[pairs[i].winner][pairs[i].loser];
+Remember, this is all inside sort_pairs, which is sorting pairs based on strength. Why? I don't care! Why is strength defined that way? I don't care! I know how to write a bubble sort, and it decides to swap (or not) by comparing two strength values (which is defined for me and I blindly calculate).
+
+This is kind of a long winded opinion piece. It relates to two things. One is that when I see people talk about getting out paper and drawing the graphs, I think they may be overthinking the problem. The second is just to point out that I have programmed several scientific problems without understanding the science behind them. Someone who does understand assures me that as long as I take the data from step 1 (which they supplied) perform a step 2 on it, and then feed it to step 3 (which they supplied), the correct answer will come out. All I have to do is write step 2.
+
+Turning back to Tideman specifically, there were a few other things that made it possible to complete without understanding everything about it:
+
+check50 FTW! It tests and reports on each of the 6 functions individually, so you can write them one at a time and be confident when you have solved each individual piece.
+
+Recognizing that this is a graph problem; that there are edges; that "lock_pairs" should maybe be called "create_edges" and "locked" should maybe be called "edge_exists".
+
+Recognizing that "adding all edges ... so long as the edge would not create a cycle" means "add edge from A to B as long as there is no existing path from B to A
+
+Recognizing that "no existing path from B to A" is a recursive problem.
+
+and I don't want to downplay the size of these items. But none of them are Tideman specific...and this is a "more comfortable" problem set. You might only make these connections if you already have some programming experience.
+
+<end soapbox>

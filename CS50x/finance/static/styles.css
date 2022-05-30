@@ -1,0 +1,46 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+
+.search_result{
+    margin-top: 4rem;
+}
+
+.table{
+    width: 80%;
+    margin: 3rem auto 2rem auto;
+}
+.align_left{
+    text-align:right;
+}
+.table_none{
+    border:none;
+}
+
+.margin{
+    margin-bottom: 1.5rem;
+}
+.col-1{
+    width: 50%;
+}

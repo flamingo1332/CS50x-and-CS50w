@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+<table class = "table">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Time</th>
+            <th class="align_left">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for history in history %}  <!-- 이상하게 for row in history, 하면 안되고 for history in history 해야 된다. index의 stocks의 경우도 같다. -->
+        <tr>
+            <td>{{ history["symbol"] }}</td>
+            <td class="col-1">{{ history["s_name"] }}</td>
+            <td>{{ history["s_num"] }}</td>
+            <td>{{ history["price"] | usd}} $</td>
+            <td >{{ history["Timestamp"]  }}</td>
+            <td class="align_left">{{ history["total"]  }} $ </td>
+
+
+
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}

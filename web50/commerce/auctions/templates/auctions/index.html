@@ -1,0 +1,45 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h2>Active Listings</h2>
+
+<div class="grid_2">
+    {% for listing in listings %}
+
+    <div class="listing">
+        <div class="grid_2_1">
+            <a href="{% url 'listing' listing.title %}" class="link_listing">
+                <img src="{{ listing.image.url }}" class="image_listing_small">
+            </a>
+
+            <a href="{% url 'listing' listing.title %}" class="link_listing">
+                <div>
+
+                    Listing: {{ listing.title }}<br>
+                    description: {{ listing.description }}<br>
+                    Starting_bid: {{ listing.starting_bid }}
+
+                    <div>
+                        Current_bid:
+                        {% for bid in bids %}
+                        {% if bid.listing == listing %}
+                        {{ bid.bid }}
+                        <br>
+                        {% if bid.closed == True%}
+                        Bid is closed!
+
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

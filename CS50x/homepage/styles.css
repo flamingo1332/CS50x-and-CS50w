@@ -1,0 +1,81 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+
+  html {
+    font-size: 10px;
+    /* 이렇게 해도 1rem=10px로 바뀌고 다른방법으로는
+
+    font-size: 62.5% 하면 16*0.625 = 10
+    이렇게 변경할 수도 있다.*/
+  }
+
+  body {
+    font-family: sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: #555;
+    font-family: "rubik", sans-serif;
+    margin-left:3rem;
+  }
+
+  .link_container{
+    width: 100%;
+    /* background-color: blue; */
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .links{
+    display:grid;
+    grid-template-columns: 15rem 15rem 15rem 15rem;
+    justify-content: start;
+    align-items: start;
+    gap: 3rem;
+    margin-left: 3rem;
+  }
+
+
+  .link{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+  }
+
+  a{
+    width: 15rem;
+    height: 5rem;
+
+    font-size: 2rem;
+    border: 1px solid black;
+    color: white;
+    background-color: black;
+    text-decoration: none;
+    display: block;
+  }
+
+  .hello{
+    font-size:6rem;
+    line-height:1.1;
+    margin-bottom: 3rem;
+  }
+
+
+  .sub-title{
+    font-weight: bold;
+    font-size: 3rem;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+  }
+
+
+
+  footer{
+    font-size: 2rem;
+    margin-top:5rem;
+    border-top: 1px solid black;
+    padding-top: 3rem;
+  }

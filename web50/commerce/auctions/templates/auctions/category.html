@@ -1,0 +1,13 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h2>Category</h2>
+
+{% for element in categories %}
+<div class="category">
+  <a href="{% url 'categoryname' element.0 %}">{{ element.0 }}</a>
+  <!-- element[1]이 아니라 element.1 이렇게 쓴다.  -->
+</div>
+{% endfor %}
+
+{% endblock %}

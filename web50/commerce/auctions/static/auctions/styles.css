@@ -1,0 +1,87 @@
+body {
+  padding: 10px;
+}
+.grid_2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: auto;
+  justify-content: start;
+  align-items: start;
+  /* gap: 10px; */
+}
+.grid_2_1 {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  width: auto;
+  justify-items: start;
+  align-items: start;
+  /* gap: 10px; */
+}
+.grid_2_2 {
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  width: auto;
+  justify-items: start;
+  align-items: start;
+  /* gap: 10px; */
+}
+
+.image_listing_small {
+  height: 138px;
+  width: 140px;
+  padding: 0;
+  margin: 0;
+  margin-right: 15px;
+}
+.image_listing_large {
+  height: 270px;
+  width: 280px;
+  padding: 0;
+  margin: 0;
+  margin-right: 15px;
+}
+
+.listing {
+  border: 1px solid gray;
+  width: 95%;
+  height: 140px;
+  margin-bottom: 10px;
+}
+
+.description {
+  margin: 15px 0 20px 0;
+}
+.bid {
+  margin: 15px 0 20px 0;
+}
+
+.listing_comment_section {
+  border-bottom: 1px solid rgb(225, 225, 225);
+  margin: 15px 0 20px 0;
+}
+.listing_comments {
+  border-bottom: 1px solid rgb(225, 225, 225);
+}
+input[value="comment"] {
+  display: block;
+}
+input[value="close bid"] {
+  margin-top: 10px;
+}
+.link_listing {
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+}
+.link_listing:hover {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.watchlist {
+  border: 1px solid gray;
+  width: 90%;
+  height: 100px;
+  margin-bottom: 10px;
+}

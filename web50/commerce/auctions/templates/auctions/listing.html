@@ -1,0 +1,99 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="grid_2">
+  <div>
+    <h2>{{ title }} </h2>
+
+    <img src="{{ listing.image.url }}" class="image_listing_large">
+    <div class="description">
+      Listing: {{ listing.title }}<br>
+      description: {{ listing.description }}<br>
+      Starting_bid: {{ listing.starting_bid }}
+    </div>
+
+    <!-- bid section -->
+    <div class="bid">
+      <form action="{% url 'listing' title %}" method="post">
+        {% csrf_token %}
+
+        <div>
+          Last bid: {{ bids.bid }} &nbsp&nbsp
+          username: {{bids.username}} &nbsp&nbsp
+          date: {{bids.date}}
+        </div>
+
+
+        {% if closed == False %}
+        <input value="bid" type="number" name="bid" placeholder="bid" min="0" step="0.01">
+        <input type="submit" value="bid">
+        {% endif %}
+      </form>
+
+      <form action="{% url 'listing' title %}" method="post">
+        {% csrf_token %}
+
+        {% if closed == False %}
+        {% if username == listing.user %}
+        <input type="submit" value="close bid" name="close">
+        {% endif %}
+        {% endif %}
+      </form>
+
+      {% if closed == True %}
+      <p> Bid is Closed! </p>
+      {% endif %}
+
+
+      {% if closed == True %}
+      {% if username == bids.username %}
+      <p> {{username}}, you are the winner! </p>
+      {% endif %}
+      {% endif %}
+
+
+      {% if message %}
+      {{ message }}
+      {% endif %}
+
+    </div>
+
+    <!-- watchlist section -->
+    {% if watchlist %}
+    <form action="{% url 'listing' title %}" method="post">
+      {% csrf_token %}
+      <input value="Delete from Watchlist" type="submit" name="watchlist">
+    </form>
+  </div>
+  {% else %}
+  <form action="{% url 'listing' title %}" method="post">
+    {% csrf_token %}
+    <input value="Add to Watchlist" type="submit" name="watchlist">
+  </form>
+</div>
+{% endif %}
+
+
+
+<!-- comment section -->
+<div>
+  <form action="{% url 'listing' title %}" method="post">
+    {% csrf_token %}
+    <div>
+    </div>
+
+    <div class="listing_comment_section">
+      <textarea rows="4" cols="50" placeholder="comment here" name="comment"></textarea>
+      <input type="submit" value="comment">
+  </form>
+  {% for comment in comments %}
+  <div class="listing_comments">
+    comment: {{ comment.comment }}<br>
+    username: {{ comment.username }}<br>
+    date: {{ comment.date }}<br>
+  </div>
+  {% endfor %}
+</div>
+</div>
+</div>
+{% endblock %}

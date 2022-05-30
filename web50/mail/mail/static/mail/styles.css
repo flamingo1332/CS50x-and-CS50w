@@ -1,0 +1,48 @@
+textarea {
+  min-height: 400px;
+}
+
+.email {
+  border: 1px solid gray;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.d-flex {
+  margin-bottom: 15px;
+}
+
+.d-flex,
+.p-2,
+.ml-auto {
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+button {
+  border-radius: 5px;
+  margin-bottom: 5px;
+  border: 1px solid;
+}
+button:hover {
+  border: 1px solid gray;
+  color: gray;
+}
+
+.email_heading {
+  font-size: 24px;
+  border-bottom: 1px solid gray;
+}
+
+.email_body {
+  margin-top: 20px;
+  font-style: sans-serif;
+  font-size: 16px;
+}
+
+.backgroundgray {
+  background-color: rgb(202, 202, 202);
+}

@@ -1,0 +1,76 @@
+{% extends "network/layout.html" %} {% block body %}
+
+<!-- 페이지 단위로 출력 -->
+{% for post in posts %}
+<div class="post_display">
+    <a class="nav-link" href="{% url 'profile' post.username %}">
+        <p>Username: {{ post.username }}</p>
+    </a>
+
+    <div class="post_content">
+        <div class="default_display" id="post_content_{{ post.id }}">Content: {{ post.content }}</div>
+        <div class="default_displaynone" id="post_edit_{{ post.id }}">Content: {{ postform.content }}</div>
+        <div>Datetime: {{ post.date }}</div>
+        <div>Likes: {{ post.liker.all.count }}</div>
+        <form action="{% url 'index' %}" method="post">
+            {% csrf_token %}
+            {% if user in post.liker.all %}
+            <button type="submit" class="like" name="like" id="like_{{ post.id }}" value="{{ post.id }}"><svg
+                    xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 heart heart-fill" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg></button>
+
+            {% else %}
+            <button type="submit" class="like" name="like" id="like_{{ post.id }}" value="{{ post.id }}"><svg
+                    xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 heart" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg></button>
+            {% endif %}
+        </form>
+
+        {% if post.username == user %}
+        <button class="default_display" id="edit_{{ post.id }}" value="{{ post.id }}"
+            onclick="edit(this.value)">EDIT</button>
+        <button class="default_displaynone" id="edit_submit_{{ post.id }}" value="{{ post.id }}"
+            onclick="submit(this.value)">SUBMIT</button>
+    </div>
+    {% else %}
+</div>
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+
+<!-- pagination -->
+{% if posts.has_other_pages %}
+<nav>
+    <ul class="pagination">
+        {% if posts.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{posts.previous_page_number}}">Previous</a></li>
+        {% else %}
+        <li class="disabled page-item"><a class="page-link">Previous</a></li>
+        {% endif %}
+
+        {% for i in posts.paginator.page_range %}
+        {% if posts.number == i%}
+        <li class="active page-item"><a class="page-link">{{ i }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if posts.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{posts.next_page_number}}">Next</a></li>
+        {% else %}
+        <li class="disabled page-item"><a class="page-link">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+sort1 uses: bubble sort
+
+How do you know?:
+it had the highest running time sorting reversed50000, which is the worst case for bubble sort.
+
+sort2 uses: merge sort
+
+
+How do you know?: selection sort
+unlike other sorts, running time of sort 2 doesn't go up exponentially as size of list goes up.
+
+
+sort3 uses: selection sort
+
+How do you know?:
+it had highest running time sorting sorted50000, which means that it had to repeat the loop even it was the best case.
+

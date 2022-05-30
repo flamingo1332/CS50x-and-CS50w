@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+search
+{% endblock %}
+
+{% block body %}
+<h1>Search results</h1>
+
+<p>
+  {% for match in matches %}
+
+  <li><a href="{% url 'wiki:title' match %}">{{ match }}</a></li> <!-- url 부분 syntax에 유의-->
+  {% endfor %}
+</p>
+
+{% endblock %}

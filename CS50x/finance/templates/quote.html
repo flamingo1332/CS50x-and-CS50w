@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="quote" name="symbol" placeholder="quote" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <!-- <p class="result"> {{ search }} </p> -->
+    {% if search %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col-1">Name</th>
+                <th class="col-1">Price</th>
+                <th class="col-1">Symbol</th>
+            </tr>
+            </thead>
+                <!-- 위에 if 안붙여주면 한번 검색한다음 메인으로 돌아가고 다시 quote들어가면 오류생김,
+                     왜냐면 아직 검색하지 않아서 search값이 없는데 render하려니까 undefined에러 생김 -->
+                <tbody>
+                    <tr>
+                        <td>{{ search["name"] }}</td>
+                        <td>{{ search["price"] | usd}}$</td>
+                        <td>{{ search["symbol"] }}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+            {% endif %}
+            {% endblock %}
